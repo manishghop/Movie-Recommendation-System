@@ -114,7 +114,7 @@ filtering.For reference,the code can be found on the notebook attached with this
 
 ## MODEL DEPLOYMENT
 
-A this was a school project and there was no requirement to push the model on a web application, I decided to leave it as a notebook file.
+As this was a school project and there was no requirement to push the model on a web application, I decided to leave it as a notebook file.
 
 <!--
 ## This below block is for school's requirememt.
