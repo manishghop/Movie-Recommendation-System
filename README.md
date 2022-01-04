@@ -51,28 +51,40 @@ The dataset was open-source and was downloaded from kaggle dataset. The dataset 
 
 ## DATA PRE-PROCESSING
 
-In this step we look for any discrepancies in the dataset. We performed standard scaling to ensure that we normalize the data-set.
+In this step we look for any discrepancies in the dataset. After proper analysis, many missing values were found in different columns. The
+first attempted solution was to fill these values with the data interpolation techniques and the data was just enough to perform accurate filling of
+values. The genres were seperated with a special characters so we had to deal with that. A lot of the rows were empty as a result we had to either remove those columns(if they were insignificant) or had to perform certain .
+We performed standard scaling to ensure that we normalize the data-set.
 There were no missing values as the yahoo api does it's job exceptionally well.
 
 
 
 
 ## FEATURE-ENGINEERING
-As our problem was focussed on stock market direction prediction. We only chose the direction of stock market(Profit(-1) or Loss(1)) for two consecutive days. Rest all other features were found to be useless.
+
+We extracted several features from the dataset. We extracted the year of the movie realeased from the title of the movie. We extracted the relationship of the movie having prequel or sequel from its title. After we finished with the feature extractions, we removed redudant features using pearson correlation.
 
 
 ## MODEL SELECTION
 
-Our problem was a binary classification, so we used Logistic Regression & Naive Bayes Model. 
+
+Our problem was a recommendation problem, so we used Collaborative Filtering and Context-Based Filtering. 
+
+
+Write something about Collaborative filtering and context based filtering here:
+
 
 ## MODEL EVALUATION & COMPARISION
 
 Out of these two, Naive Bayes Model preformed better.
 
+Results:
+
 
 
 ## MODEL DEPLOYMENT
-We used Flask framework to deploy our model as a web application. At the web application's front-end we added a textbox where, it asks the user the current day stock market value of the company choosen by the user and in the back-end it predicts the next day's stock market direction(Profit(1) or Loss(-1)).
+
+AS this was a school project and there was no requirement to push the model on a web application, I decided to leave it as a notebook file.
 
 <!--
 ## This below block is for school's requirememt.
