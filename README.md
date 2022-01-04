@@ -5,10 +5,8 @@ CS680-Fall 2020 Project
 ## You can follow along using the Notebook File
 
 
-As a final project for CS680 I had a chance to apply machine learning models on a real world problem. The problem statement was similiar to the famous netflix challenge. The goal of the problem is to come up with a recommendation system that recommends movie to both a new user or a existing user. Recommending movies to a new user can be tricky as we have no information of his taste whatsoever.
+As a final project for CS680, I had a chance to apply machine learning models on a real world problem. The problem statement was similiar to the famous Netflix challenge. The goal of the problem is to come up with a recommendation system that recommends movies to both a new user or an existing user. Recommending movies to a new user can be tricky as we have no information of his taste whatsoever. Overall, I had fun in solving this problem as I got to learn several things.
 
-# stock_direction_predictor
-Stock Market Direction Predictor
 
 ## PACKAGES
 <h1>You need to install following packages first</h1>
@@ -23,11 +21,9 @@ Stock Market Direction Predictor
 <p>Go ahead and pip install above packages.</p>
 
 ```
-pip install pyqt5
 pip install sklearn
 pip install pandas
 pip install numpy
-pip install dbConnect
 pip install tqdm
 pip install scikit-surprise 
 pip install scipy 
@@ -53,16 +49,14 @@ The dataset was open-source and was downloaded from kaggle dataset. The dataset 
 
 In this step we look for any discrepancies in the dataset. After proper analysis, many missing values were found in different columns. The
 first attempted solution was to fill these values with the data interpolation techniques and the data was just enough to perform accurate filling of
-values. The genres were seperated with a special characters so we had to deal with that. A lot of the rows were empty as a result we had to either remove those columns(if they were insignificant) or had to perform certain .
+values. The genres were seperated with a special characters so we had to deal with that. A lot of the rows were empty as a result we had to either remove those columns(if they were insignificant) or had to perform certain pre-processing techniques.
 We performed standard scaling to ensure that we normalize the data-set.
-There were no missing values as the yahoo api does it's job exceptionally well.
-
 
 
 
 ## FEATURE-ENGINEERING
 
-We extracted several features from the dataset. We extracted the year of the movie realeased from the title of the movie. We extracted the relationship of the movie having prequel or sequel from its title. After we finished with the feature extractions, we removed redudant features using pearson correlation.
+We extracted several features from the dataset. We extracted the year of the movie realeased from the title of the movie. We extracted the relationship of the movie having prequel or sequel from its title. After we finished with the feature extractions, we removed redundant features using pearson correlation.
 
 
 ## MODEL SELECTION
@@ -73,18 +67,54 @@ Our problem was a recommendation problem, so we used Collaborative Filtering and
 
 Write something about Collaborative filtering and context based filtering here:
 
+## Collaborative Filtering:
+
+The technique is called **Collaborative Filtering**, which is also known as User-User Filtering.
+As hinted by its alternate name, this technique uses other users to recommend items to the
+input user. It attempts to find users that have similar preferences and opinions as the input
+and then recommends items that they have liked to the input.
+
+- this method involves taking the view of a group of users.
+  For the implementation, I shown it for the userid=1(I'm making recommendation for user-1), similarly we can recommend the movies to anyone.
+
+## Context-Based Filtering:
+
+A content based recommender works with data that the user provides, either explicitly
+(rating) or implicitly (clicking on a link). Based on that data, a user profile is generated,
+which is then used to make suggestions to the user. As the user provides more inputs or
+takes actions on the recommendations, the engine becomes more and more accurate.
+
+- It is recommended that we have a pre-existing profile for a user. This algorithm doesn't recommends movies to a new user. In content based filtering we have to know the content of both user and item. Usually we construct user-profile and item-profile using the content of shared attribute space. For example, for a movie, you represent it with the movie stars in it and the genres. For user profile, you can do the same thing based on the users likes some movie stars/genres etc.
+
+
+
+- let's assume that user 1 has watched these 100 movies and we try to recommend him more movies and try to see if our recommendation matched his watched movies.
+Here we made and assumption that if he gave a rating that means he watched the movie
+Here we took userid=1, that is we make recommendation for user-1. We can make recommendation to any user.
+
 
 ## MODEL EVALUATION & COMPARISION
 
-Out of these two, Naive Bayes Model preformed better.
+We can observe from the above graph that RMSE of content-based filtering is smaller than the RMSE of collaborative-based filtering.
+And it can be proved in general that individual preferences are always better than the group preference.
 
-Results:
+ 
 
+## Results:
+
+Out of the two content based filtering and collaborative filtering, content based filtering out-
+performed collaborative filtering by a huge margin as the RMSE(Root Mean Square Error)
+of the content-based filtering was much smaller than the RMSE of the collaborative-based
+filtering. This makes sense, as items predicted by content based filtering are more similiar
+to users likings as they make more sense since they are based on user’s preferences. On the
+other hand collaborative filtering underperforms as it’s based on a group’s choice. There
+might be cases when an item liked by a user is never recommended to him by collaborative
+filtering.For reference,the code can be found on the notebook attached with this report
 
 
 ## MODEL DEPLOYMENT
 
-AS this was a school project and there was no requirement to push the model on a web application, I decided to leave it as a notebook file.
+A this was a school project and there was no requirement to push the model on a web application, I decided to leave it as a notebook file.
 
 <!--
 ## This below block is for school's requirememt.
